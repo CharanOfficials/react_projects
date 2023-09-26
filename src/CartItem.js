@@ -4,16 +4,25 @@ class CartItem extends React.Component{
     constructor() {
         super()
         this.state = {
-            price: '999',
+            price: 999,
             title: 'Phone',
-            qty: '1',
+            qty: 1,
             img:""
         }
         // To get the value of the (this) inside the JSX and the alternate is using the arrow functions as they always refer to the this of the enclosing class or function
         // this.increaseQuantity = this.increaseQuantity.bind(this)
     }
-    increaseQuantity = ()=>{
-        console.log("this", this.state)
+    increaseQuantity = () => {
+        // Use this when prev state is not required
+        // this.setState({
+        //     qty:this.setState.qty + 1
+        // })
+        // use this when previous state is required
+        this.setState((prevState) => {
+            return {
+                qty: prevState.qty + 1
+            }
+        })
     }
     render() {
         const {price, title, qty, img} = this.state
